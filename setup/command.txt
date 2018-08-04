@@ -1,0 +1,6 @@
+
+mysql -h 127.0.0.1 -u root -ppassword < sakila-schema.sql 
+
+mysql -h 127.0.0.1 -u root -ppassword < sakila-data.sql
+
+gen --connstr "root:password@tcp(127.0.0.1:3306)/sakila?&parseTime=True" --database sakila  --json --gorm --guregu --rest
