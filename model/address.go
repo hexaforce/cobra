@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/guregu/null"
-	"github.com/jinzhu/gorm"
 )
 
 var (
@@ -22,8 +21,8 @@ type Address struct {
 	CityID     int         `gorm:"column:city_id" json:"city_id"`
 	PostalCode null.String `gorm:"column:postal_code" json:"postal_code"`
 	Phone      string      `gorm:"column:phone" json:"phone"`
-	Location   `gorm:"column:location" json:"location"`
-	LastUpdate time.Time `gorm:"column:last_update" json:"last_update"`
+	Location   null.String `gorm:"column:location" json:"location"`
+	LastUpdate time.Time   `gorm:"column:last_update" json:"last_update"`
 }
 
 // TableName sets the insert table name for this struct type

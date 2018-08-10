@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/guregu/null"
-	"github.com/jinzhu/gorm"
 )
 
 var (
@@ -18,7 +17,7 @@ type Film struct {
 	FilmID             int         `gorm:"column:film_id;primary_key" json:"film_id"`
 	Title              string      `gorm:"column:title" json:"title"`
 	Description        null.String `gorm:"column:description" json:"description"`
-	ReleaseYear        `gorm:"column:release_year" json:"release_year"`
+	ReleaseYear        null.String `gorm:"column:release_year" json:"release_year"`
 	LanguageID         int         `gorm:"column:language_id" json:"language_id"`
 	OriginalLanguageID null.Int    `gorm:"column:original_language_id" json:"original_language_id"`
 	RentalDuration     int         `gorm:"column:rental_duration" json:"rental_duration"`
