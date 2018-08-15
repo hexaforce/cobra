@@ -14,8 +14,33 @@
 
 package main
 
-import "github.com/hexaforce/cobra/cmd"
+import (
+	"database/sql"
+
+	_ "github.com/go-sql-driver/mysql"
+	"gopkg.in/testfixtures.v2"
+)
+
+// func main() {
+// 	cmd.Execute()
+// }
 
 func main() {
-	cmd.Execute()
+
+	// DB接続先
+	mysqlConnect := "root:password@tcp(127.0.0.1:13306)/sakila"
+	// yml出力先
+	generatePath := "testdata"
+
+	mysql, err := sql.Open("mysql", mysqlConnect)
+	if err != nil {
+		panic(err.Error())
+	}
+	defer mysql.Close()
+
+	err = testfixtures.GenerateFixtures(mysql, &testfixtures.MySQL{}, generatePath)
+	if err != nil {
+		panic(err.Error())
+	}
+
 }

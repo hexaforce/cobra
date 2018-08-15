@@ -21,22 +21,17 @@ var DB *gorm.DB
 
 func ConfigRouter() http.Handler {
 	router := httprouter.New()
-	configActorsRouter(router)
-	configAddressesRouter(router)
-	configCategoriesRouter(router)
-	configCitiesRouter(router)
-	configCountriesRouter(router)
-	configCustomersRouter(router)
-	configFilmsRouter(router)
-	configFilmActorsRouter(router)
-	configFilmCategoriesRouter(router)
-	configFilmTextsRouter(router)
-	configInventoriesRouter(router)
-	configLanguagesRouter(router)
-	configPaymentsRouter(router)
-	configRentalsRouter(router)
-	configStaffsRouter(router)
-	configStoresRouter(router)
+	configArmsRouter(router)
+	configClicksRouter(router)
+	configImportUsersRouter(router)
+	configJobCodesRouter(router)
+	configJobHistoriesRouter(router)
+	configJobSegmentArmsRouter(router)
+	configJobSegmentsRouter(router)
+	configJobsRouter(router)
+	configSchemaMigrationsRouter(router)
+	configSentEmailHistoriesRouter(router)
+	configTargetUsersRouter(router)
 
 	return router
 }
