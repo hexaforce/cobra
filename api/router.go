@@ -26,7 +26,7 @@ func ConfigRouter() http.Handler {
 	configImportUsersRouter(router)
 	configJobCodesRouter(router)
 	configJobHistoriesRouter(router)
-	configJobSegmentArmsRouter(router)
+	//	configJobSegmentArmsRouter(router)
 	configJobSegmentsRouter(router)
 	configJobsRouter(router)
 	configSchemaMigrationsRouter(router)

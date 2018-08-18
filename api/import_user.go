@@ -21,30 +21,30 @@ func GetAllImportUsers(w http.ResponseWriter, r *http.Request, ps httprouter.Par
 	DB.Find(&importusers)
 	writeJSON(w, &importusers)
 
-	page, err := readInt(r, "page", 1)
-	if err != nil || page < 1 {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-	}
-	pagesize, err := readInt(r, "pagesize", 20)
-	if err != nil || pagesize <= 0 {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-	}
-	offset := (page - 1) * pagesize
+	// page, err := readInt(r, "page", 1)
+	// if err != nil || page < 1 {
+	// 	http.Error(w, err.Error(), http.StatusBadRequest)
+	// }
+	// pagesize, err := readInt(r, "pagesize", 20)
+	// if err != nil || pagesize <= 0 {
+	// 	http.Error(w, err.Error(), http.StatusBadRequest)
+	// }
+	// offset := (page - 1) * pagesize
 
-	order := r.FormValue("order")
+	// order := r.FormValue("order")
 
-	importusers := []*model.ImportUser{}
+	// importusers := []*model.ImportUser{}
 
-	if order != "" {
-		err = DB.Model(&model.ImportUser{}).Order(order).Offset(offset).Limit(pagesize).Find(&importusers).Error
-	} else {
-		err = DB.Model(&model.ImportUser{}).Offset(offset).Limit(pagesize).Find(&importusers).Error
-	}
+	// if order != "" {
+	// 	err = DB.Model(&model.ImportUser{}).Order(order).Offset(offset).Limit(pagesize).Find(&importusers).Error
+	// } else {
+	// 	err = DB.Model(&model.ImportUser{}).Offset(offset).Limit(pagesize).Find(&importusers).Error
+	// }
 
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
 }
 
 func GetImportUser(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {

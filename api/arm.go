@@ -21,30 +21,30 @@ func GetAllArms(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	DB.Find(&arms)
 	writeJSON(w, &arms)
 
-	page, err := readInt(r, "page", 1)
-	if err != nil || page < 1 {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-	}
-	pagesize, err := readInt(r, "pagesize", 20)
-	if err != nil || pagesize <= 0 {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-	}
-	offset := (page - 1) * pagesize
+	// page, err := readInt(r, "page", 1)
+	// if err != nil || page < 1 {
+	// 	http.Error(w, err.Error(), http.StatusBadRequest)
+	// }
+	// pagesize, err := readInt(r, "pagesize", 20)
+	// if err != nil || pagesize <= 0 {
+	// 	http.Error(w, err.Error(), http.StatusBadRequest)
+	// }
+	// offset := (page - 1) * pagesize
 
-	order := r.FormValue("order")
+	// order := r.FormValue("order")
 
-	arms := []*model.Arm{}
+	// arms := []*model.Arm{}
 
-	if order != "" {
-		err = DB.Model(&model.Arm{}).Order(order).Offset(offset).Limit(pagesize).Find(&arms).Error
-	} else {
-		err = DB.Model(&model.Arm{}).Offset(offset).Limit(pagesize).Find(&arms).Error
-	}
+	// if order != "" {
+	// 	err = DB.Model(&model.Arm{}).Order(order).Offset(offset).Limit(pagesize).Find(&arms).Error
+	// } else {
+	// 	err = DB.Model(&model.Arm{}).Offset(offset).Limit(pagesize).Find(&arms).Error
+	// }
 
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
 }
 
 func GetArm(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {

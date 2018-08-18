@@ -20,30 +20,30 @@ func GetAllJobSegmentArms(w http.ResponseWriter, r *http.Request, ps httprouter.
 	DB.Find(&jobsegmentarms)
 	writeJSON(w, &jobsegmentarms)
 
-	page, err := readInt(r, "page", 1)
-	if err != nil || page < 1 {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-	}
-	pagesize, err := readInt(r, "pagesize", 20)
-	if err != nil || pagesize <= 0 {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-	}
-	offset := (page - 1) * pagesize
+	// page, err := readInt(r, "page", 1)
+	// if err != nil || page < 1 {
+	// 	http.Error(w, err.Error(), http.StatusBadRequest)
+	// }
+	// pagesize, err := readInt(r, "pagesize", 20)
+	// if err != nil || pagesize <= 0 {
+	// 	http.Error(w, err.Error(), http.StatusBadRequest)
+	// }
+	// offset := (page - 1) * pagesize
 
-	order := r.FormValue("order")
+	// order := r.FormValue("order")
 
-	jobsegmentarms := []*model.JobSegmentArm{}
+	// jobsegmentarms := []*model.JobSegmentArm{}
 
-	if order != "" {
-		err = DB.Model(&model.JobSegmentArm{}).Order(order).Offset(offset).Limit(pagesize).Find(&jobsegmentarms).Error
-	} else {
-		err = DB.Model(&model.JobSegmentArm{}).Offset(offset).Limit(pagesize).Find(&jobsegmentarms).Error
-	}
+	// if order != "" {
+	// 	err = DB.Model(&model.JobSegmentArm{}).Order(order).Offset(offset).Limit(pagesize).Find(&jobsegmentarms).Error
+	// } else {
+	// 	err = DB.Model(&model.JobSegmentArm{}).Offset(offset).Limit(pagesize).Find(&jobsegmentarms).Error
+	// }
 
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
 }
 
 func GetJobSegmentArm(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {

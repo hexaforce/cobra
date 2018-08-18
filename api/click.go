@@ -21,30 +21,30 @@ func GetAllClicks(w http.ResponseWriter, r *http.Request, ps httprouter.Params) 
 	DB.Find(&clicks)
 	writeJSON(w, &clicks)
 
-	page, err := readInt(r, "page", 1)
-	if err != nil || page < 1 {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-	}
-	pagesize, err := readInt(r, "pagesize", 20)
-	if err != nil || pagesize <= 0 {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-	}
-	offset := (page - 1) * pagesize
+	// page, err := readInt(r, "page", 1)
+	// if err != nil || page < 1 {
+	// 	http.Error(w, err.Error(), http.StatusBadRequest)
+	// }
+	// pagesize, err := readInt(r, "pagesize", 20)
+	// if err != nil || pagesize <= 0 {
+	// 	http.Error(w, err.Error(), http.StatusBadRequest)
+	// }
+	// offset := (page - 1) * pagesize
 
-	order := r.FormValue("order")
+	// order := r.FormValue("order")
 
-	clicks := []*model.Click{}
+	// clicks := []*model.Click{}
 
-	if order != "" {
-		err = DB.Model(&model.Click{}).Order(order).Offset(offset).Limit(pagesize).Find(&clicks).Error
-	} else {
-		err = DB.Model(&model.Click{}).Offset(offset).Limit(pagesize).Find(&clicks).Error
-	}
+	// if order != "" {
+	// 	err = DB.Model(&model.Click{}).Order(order).Offset(offset).Limit(pagesize).Find(&clicks).Error
+	// } else {
+	// 	err = DB.Model(&model.Click{}).Offset(offset).Limit(pagesize).Find(&clicks).Error
+	// }
 
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	// if err != nil {
+	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
+	// 	return
+	// }
 }
 
 func GetClick(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
